@@ -9,6 +9,11 @@ import logica.HiloAire;
 import logica.HiloUps; 
 import logica.HiloServidor;
 import gui.VentanaEstadisticas;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JFileChooser;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -158,6 +163,24 @@ public class VentanaPrincipal extends JFrame {
             escribirLog("⚠️ SIMULACIÓN: Aires desactivados. Monitoreando calor...");
         });
         pnlBotones.add(btnTestTemp);
+        
+        //Boton exportar a archivo
+        JButton btnExportar = new JButton("💾 Exportar Log");
+        btnExportar.addActionListener(e -> {
+            JFileChooser chooser = new JFileChooser();
+            int seleccion = chooser.showSaveDialog(this);
+            
+            if (seleccion == JFileChooser.APPROVE_OPTION) {
+                try (FileWriter fw = new FileWriter(chooser.getSelectedFile() + ".txt")) {
+                    // Escribimos todo el contenido del JTextArea al archivo
+                    fw.write(logEventos.getText());
+                    JOptionPane.showMessageDialog(this, "Log exportado con éxito.");
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "Error al guardar el archivo: " + ex.getMessage());
+                }
+            }
+        });
+        pnlBotones.add(btnExportar); // O donde tengas tus botones
         
         
         JButton btnRestaurar = new JButton("Restaurar Luz");
@@ -413,7 +436,17 @@ public class VentanaPrincipal extends JFrame {
 
     // Método para escribir en el log desde fuera
     public void escribirLog(String mensaje) {
-        logEventos.append(mensaje + "\n");
+        //logEventos.append(mensaje + "\n");
+    	
+    	    // Formato: [2026-01-27 10:15:30]
+    	    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    	    String timestamp = dtf.format(LocalDateTime.now());
+    	    
+    	    // Lo agregamos al JTextArea (asegúrate de que logEventos sea el nombre de tu JTextArea)
+    	    SwingUtilities.invokeLater(() -> {
+    	        logEventos.append("[" + timestamp + "] " + mensaje + "\n");
+    	    });
+    	
     }
     
     public void actualizarEstadisticasAgonía() {
