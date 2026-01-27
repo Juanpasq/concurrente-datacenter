@@ -1,0 +1,33 @@
+SISTEMA INICIADO: Red eléctrica estable.
+[2026-01-27 14:20:47] ❄️ Aire 1 apagado.
+[2026-01-27 14:20:51] ❄️ Aire 1 reconectado.
+[2026-01-27 14:20:54] ⚠️ CORTE DE LUZ DETECTADO.
+[2026-01-27 14:20:55] ⛽ Generador consumiendo... Nivel: 9
+[2026-01-27 14:20:57] ⛽ Generador consumiendo... Nivel: 8
+[2026-01-27 14:20:59] ⛽ Generador consumiendo... Nivel: 7
+[2026-01-27 14:21:01] ⛽ Generador consumiendo... Nivel: 6
+[2026-01-27 14:21:03] ⛽ Generador consumiendo... Nivel: 5
+[2026-01-27 14:21:05] ⛽ Generador consumiendo... Nivel: 4
+[2026-01-27 14:21:07] ⛽ Generador consumiendo... Nivel: 3
+[2026-01-27 14:21:09] ⛽ Generador consumiendo... Nivel: 2
+[2026-01-27 14:21:11] ⛽ Generador consumiendo... Nivel: 1
+[2026-01-27 14:21:11] 🚨 CRÍTICO: Enviando señal de shutdown NAS.
+[2026-01-27 14:21:11] 🚨 CRÍTICO: Enviando señal de shutdown LAB.
+[2026-01-27 14:21:13] ⛽ Generador consumiendo... Nivel: 0
+❌ Server OFF: NAS
+[2026-01-27 14:21:13] 🚨 CRÍTICO: El generador se ha quedado sin combustible.
+❌ Server OFF: LAB
+[2026-01-27 14:21:15] 🔋 UPS actualizando nivel: 75%
+[2026-01-27 14:21:18] 🔋 UPS actualizando nivel: 50%
+[2026-01-27 14:21:21] 🚨 CRÍTICO: Enviando señal de shutdown PROD.
+[2026-01-27 14:21:21] 🔋 UPS actualizando nivel: 25%
+[2026-01-27 14:21:24] 💀 BLACKOUT: La UPS se ha agotado completamente.
+[2026-01-27 14:21:24] 🔋 UPS actualizando nivel: 0%
+✅ CAMBIANDO A RED ELECTRICA.
+✅ Server ON: LAB
+✅ Server ON: NAS
+[2026-01-27 14:21:24] ✅ RED ELECTRICA RESTAURADA. Duración del corte: 29s
+[2026-01-27 14:21:27] 🔋 UPS actualizando nivel: 25%
+[2026-01-27 14:21:30] 🔋 UPS actualizando nivel: 50%
+[2026-01-27 14:21:33] 🔋 UPS actualizando nivel: 75%
+[2026-01-27 14:21:36] 🔋 UPS actualizando nivel: 100%
