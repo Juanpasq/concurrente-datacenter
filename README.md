@@ -1,2 +1,2 @@
 # concurrente-datacenter
-Trabajo practico PG Concurrente
+Trabajo practico PG Concurrente Java
