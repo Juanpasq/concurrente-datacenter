@@ -11,6 +11,7 @@ public class MonitorEnergia {
     private int nivelUps = 4;    // 4 unidades (100%)
     private int conteoVacioGenerador = 0;
     private int conteoVacioUps = 0;
+    private boolean disasterRecoveryActivado = false;
     
     // Referencia a la ventana para actualizarla
     private VentanaPrincipal ventana;
@@ -22,6 +23,7 @@ public class MonitorEnergia {
     // --- MÉTODOS SINCRONIZADOS (Solo un hilo entra a la vez) ---
 
     public synchronized void setRedElectrica(boolean estado) {
+    	disasterRecoveryActivado = false;
         this.redElectricaActiva = estado;
         // Notificamos a los hilos que algo cambió
         notifyAll();
@@ -106,11 +108,20 @@ public class MonitorEnergia {
 
     }
 
-    // Este método es vital: decide qué fuente de energía se usa
+    // Este método  decide qué fuente de energía se usa IMPORTANTE
     public synchronized String getFuenteActual() {
         if (redElectricaActiva) return "RED";
         if (nivelNafta > 0) return "GENERADOR";
         if (nivelUps > 0) return "UPS";
+        
+     // Si llegamos acá, es porque no hay RED, ni NAFTA, ni UPS
+        // Usamos una bandera para que el mensaje no se repita infinitamente en el log
+        if (!disasterRecoveryActivado) {
+            disasterRecoveryActivado = true;
+            //ventana.escribirLog("🚨 FALLO TOTAL DE ENERGÍA - Sin autonomía restante.");
+            ventana.escribirLog("🌐 Ejecutando Disaster Recovery > Activando 'LoadBalancer-CABA'...");
+            ventana.escribirLog("✅ Tráfico redirigido exitosamente Nodo CABA.");
+        }
         return "OFF";
     }
     

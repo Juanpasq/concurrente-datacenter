@@ -34,15 +34,18 @@ public class HiloUps extends Thread {
                 }
                 
                 if (monitor.getNivelUps() == 1 && !yaContadoVacio) {
-                    monitor.registrarUpsVacia();
+                    //monitor.registrarUpsVacia();
                     ventana.actualizarEstadisticasAgonía();
-                    ventana.escribirLog("🚨 CRÍTICO: Enviando señal de shutdown PROD.");
+                    //ventana.escribirLog("🚨 CRÍTICO: Enviando señal de shutdown PROD.");
                     yaContadoVacio = true;
                 }
                 
                 if (monitor.getNivelUps() == 0 && !yaContadoVacio) {
                     monitor.registrarUpsVacia();
                     ventana.actualizarEstadisticasAgonía();
+                    ventana.escribirLog("🔋 UPS actualizando nivel: 7%");
+                    ventana.escribirLog("🚨 CRÍTICO: Enviando señal de shutdown PROD...");
+                    //ventana.escribirLog("enviando ...");
                     ventana.escribirLog("💀 BLACKOUT: La UPS se ha agotado completamente.");
                     yaContadoVacio = true;
                 }

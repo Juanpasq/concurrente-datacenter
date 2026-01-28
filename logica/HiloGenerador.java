@@ -34,10 +34,10 @@ public class HiloGenerador extends Thread {
                 }
                 
                 if (monitor.getNivelNafta() == 1 && !yaContadoVacio) {
-            	    monitor.registrarGeneradorVacio();
+            	    //monitor.registrarGeneradorVacio();
             	    ventana.actualizarEstadisticasAgonía();
-            	    ventana.escribirLog("🚨 CRÍTICO: Enviando señal de shutdown NAS.");
-            	    ventana.escribirLog("🚨 CRÍTICO: Enviando señal de shutdown LAB.");
+            	    //ventana.escribirLog("🚨 CRÍTICO: Enviando señal de shutdown NAS.");
+            	    //ventana.escribirLog("🚨 CRÍTICO: Enviando señal de shutdown LAB.");
             	    yaContadoVacio = true;
             	}
                 
@@ -45,6 +45,10 @@ public class HiloGenerador extends Thread {
             	if (monitor.getNivelNafta() == 0 && !yaContadoVacio) {
             	    monitor.registrarGeneradorVacio();
             	    ventana.actualizarEstadisticasAgonía();
+            	    ventana.escribirLog("🚨 CRÍTICO: Enviando señal de shutdown NAS...");
+            	    ventana.escribirLog("🚨 CRÍTICO: Enviando señal de shutdown LAB...");
+            	   // ventana.escribirLog("enviando ...");
+            	    
             	    ventana.escribirLog("🚨 CRÍTICO: El generador se ha quedado sin combustible.");
             	    yaContadoVacio = true;
             	}
