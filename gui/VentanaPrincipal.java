@@ -66,12 +66,15 @@ public class VentanaPrincipal extends JFrame {
         
         JPanel pnlServidores = new JPanel();
         pnlServidores.setBorder(BorderFactory.createTitledBorder("Estado de Servidores"));
+        pnlServidores.setLayout(new GridLayout(3, 1,10,10));
+        
+        //pnlServidores.setLayout(new BoxLayout(pnlServidores, BoxLayout.Y_AXIS));
         lblProd = crearLabelEquipo("PROD", Color.GREEN);
-        lblNas = crearLabelEquipo("NAS", Color.GREEN);
         lblLab = crearLabelEquipo("LAB", Color.GREEN);
+        lblNas = crearLabelEquipo("NAS", Color.GREEN);
         pnlServidores.add(lblProd);
-        pnlServidores.add(lblNas);
         pnlServidores.add(lblLab);
+        pnlServidores.add(lblNas);
         
 
         JPanel pnlAires = new JPanel();
