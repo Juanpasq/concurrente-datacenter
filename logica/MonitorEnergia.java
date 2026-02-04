@@ -42,12 +42,12 @@ public class MonitorEnergia {
         boolean hayConsumo = false;
 
         if (ventana != null) {
-            // ¿Hay algún servidor en Verde?
+            // ¿Hay algún servidor en Verde?  (color ON)
             boolean serversActivos = ventana.lblProd.getBackground().equals(java.awt.Color.GREEN) ||
                                      ventana.lblNas.getBackground().equals(java.awt.Color.GREEN)  ||
                                      ventana.lblLab.getBackground().equals(java.awt.Color.GREEN);
 
-            // ¿Hay algún aire en Celeste?
+            // ¿Hay algún aire en Celeste? (color ON)
             java.awt.Color celeste = new java.awt.Color(173, 216, 230);
             boolean airesActivos = ventana.lblAire1.getBackground().equals(celeste) ||
                                    ventana.lblAire2.getBackground().equals(celeste);
@@ -96,7 +96,7 @@ public class MonitorEnergia {
         // 2. Solo bajamos el nivel si hay al menos un servidor encendido
         if (consumoActual > 0) {
             if (nivelUps > 0) nivelUps--;
-            // Opcional: System.out.println("UPS consumiendo: " + consumoActual + " equipos.");
+            // Opcion System.out.println("UPS consumiendo: " + consumoActual + " equipos.");
         } else {
             // Si entra acá, los servidores están apagados (por calor o prioridad)
             // y la UPS se mantiene fija.
