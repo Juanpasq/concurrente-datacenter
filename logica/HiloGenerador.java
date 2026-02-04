@@ -21,7 +21,7 @@ public class HiloGenerador extends Thread {
                 // Esperamos 2 segundos entre cada "tick" de consumo
                 Thread.sleep(2000); 
 
-                // Lógica de consumo
+                // Logica de consumo
                 if (!monitor.isRedElectricaActiva() && monitor.getNivelNafta() > 0) {
                     monitor.consumirNafta();
                     

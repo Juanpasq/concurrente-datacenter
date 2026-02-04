@@ -61,7 +61,7 @@ public class VentanaPrincipal extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // --- 1. PANEL SUPERIOR: Equipos ---
+        // --- 1. PANEL SUPERIOR: Equipos server
         JPanel pnlEquipos = new JPanel(new GridLayout(1, 2));
         
         JPanel pnlServidores = new JPanel();
@@ -87,7 +87,7 @@ public class VentanaPrincipal extends JFrame {
         pnlEquipos.add(pnlServidores);
         pnlEquipos.add(pnlAires);
 
-        // --- 2. PANEL CENTRAL: Energía y Fuente ---
+        // --- 2. PANEL CENTRAL: Energía y Fuente
         JPanel pnlCentral = new JPanel(new BorderLayout());
         
         // Barras
@@ -123,13 +123,13 @@ public class VentanaPrincipal extends JFrame {
         JPanel pnlInferior = new JPanel(new BorderLayout());
         
         
-        // Botones y funciones >>>>>>
+        // Botones y funciones
         JPanel pnlBotones = new JPanel();
         //pnlBotones.add(new JButton("Cortar Luz"));
         //pnlBotones.add(new JButton("Restaurar Luz"));
         //pnlBotones.add(new JButton("Recargar Nafta"));
         
-        //apagar aire 1 
+        //Apagar aire 1 
         JButton btnApagarAire1 = new JButton("ON/OFF Aire 1");
         btnApagarAire1.addActionListener(e -> {
             aire1Roto = !aire1Roto; // Cambia entre encendido y apagado
@@ -140,6 +140,7 @@ public class VentanaPrincipal extends JFrame {
             }
         });
         pnlBotones.add(btnApagarAire1);
+        
         
         JButton btnCortar = new JButton("Cortar Luz");
      
@@ -153,7 +154,7 @@ public class VentanaPrincipal extends JFrame {
             }
         });
         
-        // test falla en los 2
+        // Test falla en los 2 aires
         JButton btnTestTemp = new JButton("Simular Falla Aire");
         btnTestTemp.addActionListener(e -> {
             // Aquí NO usamos vPri. porque ya estamos dentro de la clase
@@ -186,6 +187,7 @@ public class VentanaPrincipal extends JFrame {
         pnlBotones.add(btnExportar); // O donde tengas tus botones
         
         
+        //Boton restaurar luz
         JButton btnRestaurar = new JButton("Restaurar Luz");
         btnRestaurar.addActionListener(e -> {
             monitor.setRedElectrica(true);
@@ -226,7 +228,7 @@ public class VentanaPrincipal extends JFrame {
         
         logEventos = new JTextArea(10, 20);
         logEventos.setEditable(false);
-        logEventos.setFont(new Font("Monospaced", Font.PLAIN, 14)); // Fuente más prolija para logs
+        logEventos.setFont(new Font("Monospaced", Font.PLAIN, 14));
         logEventos.setText("SISTEMA INICIADO: Red eléctrica estable.\n");
         JScrollPane scrollLog = new JScrollPane(logEventos);
         scrollLog.setPreferredSize(new Dimension(300, 300)); // Fijamos un tamaño para que no compita con los stats
@@ -234,15 +236,15 @@ public class VentanaPrincipal extends JFrame {
         // Panel de Estadísticas (A la derecha del log)
         JPanel pnlStats = new JPanel(new GridLayout(7, 1, 5, 5)); // 6 filas, 1 columna, 5px de espacio
         pnlStats.setBorder(BorderFactory.createTitledBorder("Estadísticas"));
-        pnlStats.setPreferredSize(new Dimension(250, 0)); // Le damos un ancho fijo para que no "empuje" al log
+        pnlStats.setPreferredSize(new Dimension(250, 0)); // Le damos un ancho fijo para que no empuje al log
         
         lblEstadisticaProd = new JLabel("PROD OFF: 0");
         pnlStats.add(lblEstadisticaProd);
         
-        //Aire ACC
+        //Aire acondicionado
         lblTempAmbiente = new JLabel("🌡️ Temp. Sala: 22.0°C");
         lblTempAmbiente.setFont(new Font("Arial", Font.BOLD, 14));
-        lblTempAmbiente.setForeground(new Color(0, 100, 0)); // Empezamos en verde
+        lblTempAmbiente.setForeground(new Color(0, 100, 0)); // Empezamos en verde ON
         pnlAires.add(lblTempAmbiente);
         
         lblContadorCortes = new JLabel("Cortes de luz: 0");
@@ -399,7 +401,7 @@ public class VentanaPrincipal extends JFrame {
                         SwingUtilities.invokeLater(() -> vPri.actualizarFuenteVisual(fuente));
                                            
                         
-                        // MANDAMOS LOS DATOS A LA VENTANA DE ESTADÍSTICAS
+                        // Mandamos datos a la ventana de estadisticas
                         vPri.refrescarEstadisticasVisuales();
                         
                     } catch (Exception e) {
@@ -462,7 +464,7 @@ public class VentanaPrincipal extends JFrame {
     //Este método actualiza la OTRA ventana (vStats)
     public void refrescarEstadisticasVisuales() {
     	
-        if (vStats != null) { // Verificamos que la ventana exista para evitar errores
+        if (vStats != null) { // Verificamos que la ventana exista para evitar errores.
             vStats.actualizarDatos(
                 this.contadorCortes, 
                 this.calcularTiempoActual(), // Método que haremos ahora
@@ -474,10 +476,11 @@ public class VentanaPrincipal extends JFrame {
             );
         }
         
-     // agregacion del tiempo total acumulado
+     // Agregacion del tiempo total acumulado
         long tiempoActual = calcularTiempoActual(); // El tiempo que lleva el corte actual
-        lblTiempoFuera.setText("Tiempo fuera red: " + tiempoActual + "s / " + tiempoTotalCortes + "s");
-        
+        //lblTiempoFuera.setText("Fuera de red (actual / acumulado): " + tiempoActual + "s / " + tiempoTotalCortes + "s");
+        // Nos quedamos mejor solo con acumulado ya que el actual sale por LOG
+        lblTiempoFuera.setText("Tiempo acumulado de cortes: " + tiempoTotalCortes + "s"); 
     }
 
     // Método ayudante para calcular cuánto tiempo va de corte

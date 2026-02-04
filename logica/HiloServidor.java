@@ -9,7 +9,7 @@ public class HiloServidor extends Thread {
     private MonitorEnergia monitor;
     private JLabel etiqueta;
     private int prioridad; // 1 = Alta (PROD), 2 = Baja (NAS/LAB)
-    private gui.VentanaPrincipal ventana; // <--- PASO A: Declarar la variable
+    private gui.VentanaPrincipal ventana; //Declarar la variable
     
 
     public HiloServidor(String nombre, MonitorEnergia monitor, JLabel etiqueta, int prioridad) {
@@ -27,7 +27,7 @@ public class HiloServidor extends Thread {
                 String fuente = monitor.getFuenteActual();
                 boolean debeEstarPrendido = false;
 
-                // 1. Lógica de encendido
+                // 1. Logica de encendido
                 if (fuente.equals("RED") || fuente.equals("GENERADOR")) {
                     debeEstarPrendido = true;
                 } else if (fuente.equals("UPS")) {
@@ -39,13 +39,13 @@ public class HiloServidor extends Thread {
                     debeEstarPrendido = false;
                 }
 
-                // --- DETECTOR DE ENCENDIDO ---
+                // DETECTOR DE ENCENDIDO
                 if (etiqueta.getBackground().equals(java.awt.Color.RED) && debeEstarPrendido) {
                     gui.VentanaPrincipal.logEventos.append("✅ Server ON: " + nombre + "\n");
                     System.out.println("DEBUG: El servidor " + nombre + " se encendió.");
                 }
                 
-                // --- DETECTOR DE APAGADO ---
+                // DETECTOR DE APAGADO
                 if (etiqueta.getBackground().equals(java.awt.Color.GREEN) && !debeEstarPrendido) {
                     gui.VentanaPrincipal.logEventos.append("❌ Server OFF: " + nombre + "\n");
                     
