@@ -292,33 +292,33 @@ public class VentanaPrincipal extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            // 1. Creamos la ventana de estadísticas primero
+            //  Creamos la ventana de estadísticas primero
             VentanaEstadisticas vStats = new VentanaEstadisticas();
             
-            // 2. Creamos la ventana principal pasándole la de estadísticas
+            // Creamos la ventana principal pasándole la de estadísticas
             // Importante: El constructor de VentanaPrincipal debe recibir vStats
             VentanaPrincipal vPri = new VentanaPrincipal(vStats);
             
-            // 3. Posicionamos y mostramos las ventanas
+            //  Posicionamos y mostramos las ventanas
             vPri.setLocationRelativeTo(null); // Centra la principal
             vStats.setVisible(true);
             vPri.setVisible(true);
 
-            // 4. Arrancamos los hilos de Energía
+            // Arrancamos los hilos de Energía
             new logica.HiloGenerador(vPri.monitor, vPri).start();
             new logica.HiloUps(vPri.monitor, vPri).start();
 
-            // 5. Arrancamos los hilos de los Servidores
+            //  Arrancamos los hilos de los Servidores
             // PROD (Prioridad 1), NAS y LAB (Prioridad 2)
             new logica.HiloServidor("PROD", vPri.monitor, vPri.lblProd, 1).start();
             new logica.HiloServidor("NAS", vPri.monitor, vPri.lblNas, 2).start();
             new logica.HiloServidor("LAB", vPri.monitor, vPri.lblLab, 2).start();
 
-            // 6. Arrancamos los hilos de los Aires
+            // Arrancamos los hilos de los Aires
             new logica.HiloAire("AIRE 1", vPri.monitor, vPri.lblAire1, 1).start();
             new logica.HiloAire("AIRE 2", vPri.monitor, vPri.lblAire2, 2).start();
 
-            // 7. HILO DE CONTROL VISUAL Y REFRESCO (El "motor" de la interfaz)
+            // HILO DE CONTROL VISUAL Y REFRESCO (El "motor" de la interfaz)
             new Thread(() -> {
                 while (true) {
                 	
@@ -365,12 +365,12 @@ public class VentanaPrincipal extends JFrame {
                      // Dentro del try del hilo de refresco en el main
                         double cambioTemp = 0;
 
-                        // CALOR: Sumamos si los servidores están prendidos, PROD consume mas. (NO están en rojo)
+                        // Calor: Sumamos si los servidores están prendidos, PROD consume mas. (NO están en rojo)
                         if (!vPri.lblProd.getBackground().equals(Color.RED)) cambioTemp += 0.09;
                         if (!vPri.lblNas.getBackground().equals(Color.RED))  cambioTemp += 0.05;
                         if (!vPri.lblLab.getBackground().equals(Color.RED))  cambioTemp += 0.07;
 
-                        // FRÍO: Restamos si los aires están enfriando (Celeste)
+                        // frio: Restamos si los aires están enfriando (Celeste)
                         Color colorAireActivo = new Color(173, 216, 230);
                         if (vPri.lblAire1.getBackground().equals(colorAireActivo)) cambioTemp -= 0.15;
                         if (vPri.lblAire2.getBackground().equals(colorAireActivo)) cambioTemp -= 0.15;
@@ -388,7 +388,7 @@ public class VentanaPrincipal extends JFrame {
                             
                             // Cambiamos el color del texto según la gravedad
                             if (vPri.temperatura > 28) {
-                                vPri.lblTempAmbiente.setForeground(Color.RED); // ¡Calor!
+                                vPri.lblTempAmbiente.setForeground(Color.RED); // Calor!!!!
                             } else if (vPri.temperatura > 24) {
                                 vPri.lblTempAmbiente.setForeground(Color.ORANGE); // Advertencia
                             } else {

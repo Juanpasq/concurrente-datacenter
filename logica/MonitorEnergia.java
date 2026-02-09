@@ -23,7 +23,10 @@ public class MonitorEnergia {
     // --- MÉTODOS SINCRONIZADOS (Solo un hilo entra a la vez) ---
 
     public synchronized void setRedElectrica(boolean estado) {
+    	
+    	//para que no quede en ON el backup CABA lo cambiamos
     	disasterRecoveryActivado = false;
+    	
         this.redElectricaActiva = estado;
         // Notificamos a los hilos que algo cambió
         notifyAll();
