@@ -20,7 +20,7 @@ public class MonitorEnergia {
         this.ventana = ventana;
     }
 
-    // --- MÉTODOS SINCRONIZADOS (Solo un hilo entra a la vez) ---
+    // --- metodos syncro (Solo un hilo entra a la vez) ---
 
     public synchronized void setRedElectrica(boolean estado) {
     	

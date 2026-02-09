@@ -27,7 +27,7 @@ public class HiloServidor extends Thread {
                 String fuente = monitor.getFuenteActual();
                 boolean debeEstarPrendido = false;
 
-                // 1. Logica de encendido
+                // Logica de encendido
                 if (fuente.equals("RED") || fuente.equals("GENERADOR")) {
                     debeEstarPrendido = true;
                 } else if (fuente.equals("UPS")) {

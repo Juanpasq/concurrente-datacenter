@@ -22,12 +22,12 @@ public class HiloUps extends Thread {
                 int nafta = monitor.getNivelNafta();
                 int upsActual = monitor.getNivelUps();
 
-                // CASO 1: Descarga (No hay red Y no hay nafta)
+                // CASO 1 Descarga (No hay red Y no hay nafta)
                 if (!hayRed && nafta <= 0 && upsActual > 0) {
                     monitor.usarUps();
                     actualizarInterfaz();
                 } 
-                // CASO 2: Recarga (Hay red o hay nafta, y no está llena)
+                // CASO 2 Recarga (Hay red o hay nafta, y no está llena)
                 else if ((hayRed || nafta > 0) && upsActual < 4) {
                     monitor.cargarUps();
                     actualizarInterfaz();
