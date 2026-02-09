@@ -362,7 +362,7 @@ public class VentanaPrincipal extends JFrame {
                             });
                         }*/
                         
-                     // Dentro del try del hilo de refresco en el main
+                     //Warning de temperaturas
                         double cambioTemp = 0;
 
                         // Calor: Sumamos si los servidores están prendidos, PROD consume mas. (NO están en rojo)
